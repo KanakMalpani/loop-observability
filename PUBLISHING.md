@@ -8,7 +8,7 @@
    - **Owner:** `KanakMalpani`
    - **Repository:** `loop-observability`
    - **Workflow:** `publish.yml`
-3. **Fallback:** add **`PYPI_API_TOKEN`** to this repo's GitHub Actions secrets.
+3. **Fallback:** add **`PYPI_API_TOKEN`** to [loop-observability Actions secrets](https://github.com/KanakMalpani/loop-observability/settings/secrets/actions) (reuse the same upload token as LoopGym/LoopBench).
 
 ## Publish
 
