@@ -17,7 +17,7 @@
 - [x] `examples/grafana-dashboard.json`
 - [x] `examples/export_loopgym_ltf.py`
 - [x] CI: pytest + LTF validation
-- [ ] PyPI publish `loopotel` — add `PYPI_API_TOKEN` secret or trusted publisher, then run [Publish to PyPI](https://github.com/KanakMalpani/loop-observability/actions/workflows/publish.yml) (see [PUBLISHING.md](PUBLISHING.md))
+- [x] PyPI publish `loopotel` — https://pypi.org/project/loopotel/
 
 ## Success criteria
 
