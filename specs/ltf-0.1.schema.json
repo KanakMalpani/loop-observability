@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://loop-engineering.org/schema/ltf-0.1.schema.json",
+  "title": "Loop Trace Format 0.1",
+  "description": "Canonical schema for loop execution traces: one root span per run, iteration spans with worker/evaluator events, and point-in-loop LES metrics.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "trace_id",
+    "loop_name",
+    "started_at",
+    "ended_at",
+    "spec_pins",
+    "spans"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "ltf/0.1"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^ltf-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "loop_name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 64
+    },
+    "env_id": {
+      "type": "string",
+      "description": "LoopGym env id or production service identifier."
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["success", "failure", "partial", "unknown"]
+    },
+    "termination_reason": {
+      "type": "string"
+    },
+    "spec_pins": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lss", "les", "ltf"],
+      "properties": {
+        "lss": { "type": "string", "const": "lss@1.0.0" },
+        "les": { "type": "string", "const": "les@1.0.0" },
+        "ltf": { "type": "string", "const": "ltf@0.1.0" }
+      }
+    },
+    "spans": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Span" }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "SpanKind": {
+      "type": "string",
+      "enum": ["loop", "iteration", "worker", "evaluator"]
+    },
+    "Span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span_id", "name", "kind", "start_time", "attributes"],
+      "properties": {
+        "span_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "parent_span_id": {
+          "type": ["string", "null"]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": { "$ref": "#/$defs/SpanKind" },
+        "start_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "events": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SpanEvent" }
+        }
+      }
+    },
+    "SpanEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "timestamp"],
+      "properties": {
+        "name": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

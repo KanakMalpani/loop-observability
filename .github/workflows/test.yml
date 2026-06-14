@@ -1,0 +1,36 @@
+name: test-loop-observability
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KanakMalpani/LoopGym
+          path: deps/loopgym
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install package and LoopGym
+        run: |
+          pip install -e ".[dev]"
+          pip install -e deps/loopgym
+
+      - name: Run tests
+        run: pytest tests/ -q
+
+      - name: Export sample LTF from LoopGym
+        run: python examples/export_loopgym_ltf.py examples/sample-trace.jsonl
+
+      - name: Validate sample trace
+        run: loopotel-validate examples/sample-trace.jsonl
