@@ -5,15 +5,14 @@
 SREs need spans for iterations, evaluators, token burn, and LES deltas — not raw chat logs. This repo defines the format and ships `loopotel`, a minimal Python instrumentation library.
 
 [![CI](https://github.com/KanakMalpani/loop-observability/actions/workflows/test.yml/badge.svg)](https://github.com/KanakMalpani/loop-observability/actions/workflows/test.yml)
+[![PyPI](https://img.shields.io/pypi/v/loopotel.svg)](https://pypi.org/project/loopotel/)
 
 ## Install
 
 ```bash
 pip install loopotel
-# LoopGym integration + tests
-pip install loopotel[dev]
-# OTLP export
-pip install loopotel[otlp]
+pip install "loopotel[loopgym]"   # LoopGym episode tracing
+pip install "loopotel[otlp]"      # OTLP export
 ```
 
 ## Quick start — trace a LoopGym run
@@ -77,6 +76,8 @@ python scripts/validate_ltf.py path/to/trace.json
 
 ## Links
 
+- [LoopNet end-to-end tutorial](https://github.com/KanakMalpani/loopnet/blob/main/guides/END-TO-END-TUTORIAL.md) — HF → replay → LoopBench
 - [Loop Core Engineering](https://github.com/KanakMalpani/Loop-Core-Engineering) — LES / LSS
 - [LoopGym](https://github.com/KanakMalpani/LoopGym) — instrumentation target
 - [LoopNet](https://github.com/KanakMalpani/loopnet) — trajectory corpus export
+- [Publishing](PUBLISHING.md) · [PyPI](https://pypi.org/project/loopotel/)

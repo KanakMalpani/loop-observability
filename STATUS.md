@@ -17,6 +17,7 @@
 - [x] `examples/grafana-dashboard.json`
 - [x] `examples/export_loopgym_ltf.py`
 - [x] CI: pytest + LTF validation
+- [ ] PyPI publish `loopotel` — see [PUBLISHING.md](PUBLISHING.md)
 
 ## Success criteria
 
