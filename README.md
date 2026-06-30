@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/ponytail-banner.png" alt="Ponytail Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
-
 # Loop Observability
 
 **Loop Trace Format (LTF)** and OpenTelemetry conventions for production loop monitoring.
@@ -30,26 +28,19 @@ pip install "loopotel[otlp]"      # OTLP export
 
 ---
 
-## 🚀 The idea
+## Trace footprint
 
-By structuring your systems into formal closed loops with **LoopForge** and **LoopGym**, and applying optimal "ponytail" style compiler compression, you shed token bloat, latency, and costs while remaining 100% safe.
-
----
-
-## 📊 The "Ponytail" Efficiency Dividend
+Structured LTF traces capture iteration quality and cost — not every token of every prompt.
 
 <div align="center">
-  <img src="assets/benchmark-graph.png" alt="Loop Engineering Performance Metrics" width="90%" style="border-radius: 8px; margin-bottom: 10px;" />
-  <p><i>Every metric vs the no-skill baseline (Claude Code, Haiku 4.5, 12 tasks)</i></p>
+  <img src="assets/trace-footprint.svg" alt="LTF trace vs full chat transcript storage" width="92%" />
 </div>
 
-### Metrics vs. No-Skill Baseline
-
-| Strategy | Lines of Code (LOC) | Token Usage | API Cost | Latency (Time) | Safety |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **ponytail** (Optimal Loop) | **-54%** | **-22%** | **-20%** | **-27%** | **100%** |
-| **caveman** (Terse Prose) | -20% | +7% | +3% | +2% | 100% |
-| **YAGNI + One-Liners** | -33% | -14% | -21% | -30% | 95% |
+| Format | What you store | Relative size |
+| :--- | :--- | ---: |
+| Full chat transcript | prompts + completions + tool I/O | 100% |
+| **LTF loop trace** | spans, scores, termination | **~30%** |
+| OTel `loop.*` attrs | Grafana / OTLP dashboards | export-ready |
 
 ---
 

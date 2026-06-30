@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 380" role="img" aria-label="Loop observability trace footprint">
+  <rect width="880" height="380" rx="14" fill="#111113"/>
+  <text x="32" y="38" fill="#f4f4f5" font-family="ui-monospace, monospace" font-size="15" font-weight="700">Structured traces vs raw chat logs</text>
+  <text x="32" y="58" fill="#a1a1aa" font-family="ui-monospace, monospace" font-size="11">LTF 0.1 · iteration spans · LES deltas · token burn per step</text>
+
+  <text x="32" y="100" fill="#a1a1aa" font-family="ui-monospace, monospace" font-size="10">storage footprint (relative · lower is leaner)</text>
+
+  <text x="120" y="123" fill="#71717a" font-family="ui-monospace, monospace" font-size="10">full chat transcript</text>
+  <rect x="120" y="133" width="720" height="32" rx="6" fill="#52525b"/>
+  <text x="848" y="155" fill="#e4e4e7" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">100% · prompts + completions + tool I/O</text>
+
+  <text x="120" y="193" fill="#71717a" font-family="ui-monospace, monospace" font-size="10">LTF loop trace (loopotel)</text>
+  <rect x="120" y="203" width="216" height="32" rx="6" fill="#22c55e"/>
+  <text x="848" y="225" fill="#86efac" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">~30% · spans + scores + termination only</text>
+
+  <text x="120" y="263" fill="#71717a" font-family="ui-monospace, monospace" font-size="10">OTel loop.* attributes</text>
+  <rect x="120" y="273" width="180" height="32" rx="6" fill="#38bdf8"/>
+  <text x="848" y="295" fill="#7dd3fc" font-family="ui-monospace, monospace" font-size="11" text-anchor="end">Grafana-ready · optional OTLP export</text>
+
+  <rect x="32" y="328" width="816" height="36" rx="8" fill="#27272a"/>
+  <text x="44" y="350" fill="#e4e4e7" font-family="ui-monospace, monospace" font-size="11">Trace what matters: iteration quality, evaluator outcomes, cost  not every token of every prompt</text>
+</svg>
