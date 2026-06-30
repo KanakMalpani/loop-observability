@@ -33,7 +33,7 @@ pip install "loopotel[otlp]"      # OTLP export
 Structured LTF traces capture iteration quality and cost — not every token of every prompt.
 
 <div align="center">
-  <img src="assets/trace-footprint.svg" alt="LTF trace vs full chat transcript storage" width="92%" />
+  <img src="assets/trace-footprint.png" alt="LTF trace vs full chat transcript storage" width="92%" />
 </div>
 
 | Format | What you store | Relative size |
