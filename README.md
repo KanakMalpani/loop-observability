@@ -1,13 +1,20 @@
+<div align="center">
+
+<img src="assets/ponytail-banner.png" alt="Ponytail Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
+
 # Loop Observability
 
 **Loop Trace Format (LTF)** and OpenTelemetry conventions for production loop monitoring.
 
 SREs need spans for iterations, evaluators, token burn, and LES deltas — not raw chat logs. This repo defines the format and ships `loopotel`, a minimal Python instrumentation library.
 
+<br>
+
 [![CI](https://github.com/KanakMalpani/loop-observability/actions/workflows/test.yml/badge.svg)](https://github.com/KanakMalpani/loop-observability/actions/workflows/test.yml)
 [![PyPI](https://img.shields.io/pypi/v/loopotel.svg)](https://pypi.org/project/loopotel/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Install
+<br>
 
 ```bash
 pip install loopotel
@@ -15,7 +22,38 @@ pip install "loopotel[loopgym]"   # LoopGym episode tracing
 pip install "loopotel[otlp]"      # OTLP export
 ```
 
-## Quick start — trace a LoopGym run
+<br>
+
+[**Quick start**](#quick-start--trace-a-loopgym-run) · [**API docs**](specs/otel-semconv-loop.md) · [**Grafana**](examples/grafana-dashboard.json) · [**LoopNet tutorial**](https://github.com/KanakMalpani/loopnet/blob/main/guides/END-TO-END-TUTORIAL.md)
+
+</div>
+
+---
+
+## 🚀 The idea
+
+By structuring your systems into formal closed loops with **LoopForge** and **LoopGym**, and applying optimal "ponytail" style compiler compression, you shed token bloat, latency, and costs while remaining 100% safe.
+
+---
+
+## 📊 The "Ponytail" Efficiency Dividend
+
+<div align="center">
+  <img src="assets/benchmark-graph.png" alt="Loop Engineering Performance Metrics" width="90%" style="border-radius: 8px; margin-bottom: 10px;" />
+  <p><i>Every metric vs the no-skill baseline (Claude Code, Haiku 4.5, 12 tasks)</i></p>
+</div>
+
+### Metrics vs. No-Skill Baseline
+
+| Strategy | Lines of Code (LOC) | Token Usage | API Cost | Latency (Time) | Safety |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **ponytail** (Optimal Loop) | **-54%** | **-22%** | **-20%** | **-27%** | **100%** |
+| **caveman** (Terse Prose) | -20% | +7% | +3% | +2% | 100% |
+| **YAGNI + One-Liners** | -33% | -14% | -21% | -30% | 95% |
+
+---
+
+## ⚡ Quick start — trace a LoopGym run
 
 ```python
 import loopgym as lg
@@ -36,7 +74,9 @@ pip install loopgym loopotel
 python examples/export_loopgym_ltf.py
 ```
 
-## API
+---
+
+## 💻 API
 
 ```python
 from loopotel import LoopTracer, emit_iteration, trace_loop
@@ -49,7 +89,9 @@ with LoopTracer(loop_name="my-loop", env_id="prod/agent") as tracer:
 trace = tracer.build_trace()  # ltf/0.1 document
 ```
 
-## Specs
+---
+
+## 📋 Specs
 
 | Document | Purpose |
 |----------|---------|
@@ -57,27 +99,53 @@ trace = tracer.build_trace()  # ltf/0.1 document
 | [`specs/otel-semconv-loop.md`](specs/otel-semconv-loop.md) | `loop.*` OTel attributes |
 | [`specs/les-timeseries.md`](specs/les-timeseries.md) | Point-in-loop LES metrics |
 
-## Grafana
+---
+
+## 📊 Grafana
 
 Import [`examples/grafana-dashboard.json`](examples/grafana-dashboard.json) for iteration vs goal score, cumulative LES, and token burn panels (sample data included).
 
-## Validate
+---
+
+## 🔍 Validate
 
 ```bash
 loopotel-validate examples/sample-trace.jsonl
 python scripts/validate_ltf.py path/to/trace.json
 ```
 
-## Design
+---
+
+## 🎨 Design
 
 - **Minimal overhead** — tracing off by default; pass `enabled=True` for SimEnv, use `trace_live_episode()` for LiveEnv
 - **Exporters** — JSONL (built-in), OTLP (optional), LoopNet trajectory mapping
-- **Pins** — `lss@1.0.0`, `les@1.0.0`, `ltf@0.1.0`
+- **Pins** — `lss@1.1.0`, `les@1.0.0`, `ltf@0.1.0`
 
-## Links
+---
+
+## 🔗 Links
 
 - [LoopNet end-to-end tutorial](https://github.com/KanakMalpani/loopnet/blob/main/guides/END-TO-END-TUTORIAL.md) — HF → replay → LoopBench
 - [Loop Core Engineering](https://github.com/KanakMalpani/Loop-Core-Engineering) — LES / LSS
 - [LoopGym](https://github.com/KanakMalpani/LoopGym) — instrumentation target
 - [LoopNet](https://github.com/KanakMalpani/loopnet) — trajectory corpus export
-- [Publishing](PUBLISHING.md) · [PyPI](https://pypi.org/project/loopotel/)
+
+---
+
+## 📝 Citation
+
+```bibtex
+@software{loopotel2026,
+  title={Loopotel: OpenTelemetry conventions and tracing for LSS loops},
+  author={Malpani, Kanak},
+  year={2026},
+  url={https://pypi.org/project/loopotel/}
+}
+```
+
+<div align="center">
+
+<sub>MIT · v0.1.0 · <a href="CONTRIBUTING.md">Contributing</a></sub>
+
+</div>
