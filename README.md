@@ -30,11 +30,19 @@ pip install "loopotel[otlp]"      # OTLP export
 
 ## Trace footprint
 
-Structured LTF traces capture iteration quality and cost — not every token of every prompt.
+Structured LTF traces capture iteration quality, evaluator scores, and termination — **not every token of every prompt.** SREs get dashboards; researchers get datasets; finance gets cost attribution.
 
 <div align="center">
   <img src="assets/trace-footprint.png" alt="LTF trace vs full chat transcript storage" width="92%" />
 </div>
+
+| Benefit | LTF / OTel | Raw chat logs |
+| :--- | :--- | :--- |
+| **Storage** | ~**70%** leaner | Full prompt/completion dumps |
+| **Queryability** | Span per iteration · LES deltas | grep-and-pray |
+| **Grafana-ready** | `loop.*` semconv + dashboard JSON | Custom parsing hell |
+| **LoopNet compatible** | Export trajectories for replay | Unstructured blobs |
+| **Cost attribution** | `tokens_delta` per worker step | Invoice archaeology |
 
 | Format | What you store | Relative size |
 | :--- | :--- | ---: |
